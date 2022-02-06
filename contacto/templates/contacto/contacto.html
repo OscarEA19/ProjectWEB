@@ -1,0 +1,39 @@
+{%extends 'proyectowebApp/base.html' %}
+
+{% load static%}
+{%block content%}
+
+<style>
+    .contenedorFormulario{
+  
+  width: 50%;
+  margin: 10px auto;
+  border-radius: 10px;
+  padding: 1px 0px;
+}
+
+
+
+</style>
+
+
+<div class="contenedorFormulario ">
+
+    {% if "noValido" in request.GET %}
+    <p style="color: #ffffff;">Erro al enviar el Mensaje, vuelve a intentar</p>
+
+    {% endif %}
+
+    {% if "valido" in request.GET %}
+        <p style="color: #ffffff;">Mensaje enviado, gracias por contactarnos</p>
+    {% endif%}
+
+    <form action="" method="POST" style="text-align: center;" >{% csrf_token %}
+        <table style="color: #ffffff; margin: 20px auto;" >
+            {{myformulario.as_table}}
+        </table> 
+        <input type="submit" value="Enviar" style=" width: 150px; "  class="btn btn-primary">
+    </form>
+</div>
+
+{% endblock %}
